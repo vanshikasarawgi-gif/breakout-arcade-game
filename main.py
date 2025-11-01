@@ -68,7 +68,10 @@ while is_game_on:
             else:
                 ball.bounce_y()  # top/bottom hit
 
-            player_score.player_score()
+            points = {"yellow": 1, "green": 3, "orange": 5, "red": 7}
+            color = brick.color()[0]
+            player_score.add_points(points[color])
+
             break
 
 screen.exitonclick()
