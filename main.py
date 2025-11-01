@@ -33,5 +33,10 @@ for row in range(8):
 
 
 
+is_game_on = True
+while is_game_on:
+    screen.update()
+    time.sleep(ball.move_speed)
+    ball.move()
 
 screen.mainloop()
