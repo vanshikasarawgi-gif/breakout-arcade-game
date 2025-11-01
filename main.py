@@ -3,6 +3,9 @@ from turtle import Screen, Turtle
 from paddle import Paddle
 from bricks import Bricks
 from ball import Ball
+from scoreboard import Score
+from lives import Lives
+from tkinter import messagebox
 
 #set up screen
 turtle = Turtle()
@@ -29,12 +32,16 @@ y_start = 200
 for row in range(8):
     color = colors[row//2]  #floor div divides and round it to nearest whole number (towards negative) eg 1.5 = 1, 0.5 =0
     y = y_start - row *20
-    for x in range(-300,350,50):
+    for x in range(-280,350,50):
         new_brick = Bricks(color,(x,y))
         bricks_list.append(new_brick)
 
 #create ball
 ball = Ball()
+
+#player score and lives
+player_score = Score()
+player_lives = Lives()
 
 is_game_on = True
 while is_game_on:
@@ -51,14 +58,14 @@ while is_game_on:
         ball.bounce_x()
 
     #detect collisions with paddle
-    if ball.distance(paddle)<50 and ball.ycor()<-230:
+    if ball.distance(paddle)<40 and ball.ycor()<-230:
         ball.sety(-230)  #move ball just above the paddle
         ball.bounce_y()
+        ball.move_speed *= 0.9
 
     #detect collisions with bricks
     for brick in bricks_list:
-        if ball.distance(brick)<30:
-            ball.bounce_y()
+        if ball.distance(brick) < 30:
             bricks_list.remove(brick)
             brick.hideturtle()
 
