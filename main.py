@@ -79,7 +79,13 @@ while is_game_on:
         paddle.goto(0,-250)
         player_lives.calculate_lives()
 
-       
+    if player_lives.lives == 0:
+        messagebox.showinfo(title="Game Over",message=f"Your score was {player_score.score}")
+        is_game_on = False
+
+    if len(bricks_list) == 0:
+        messagebox.showinfo("You Win!", "Congratulations! You broke all the bricks!")
+        is_game_on = False
 
 
 
