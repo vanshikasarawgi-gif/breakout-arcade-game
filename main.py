@@ -61,6 +61,14 @@ while is_game_on:
             ball.bounce_y()
             bricks_list.remove(brick)
             brick.hideturtle()
+
+            # check which side is closer
+            if abs(ball.xcor() - brick.xcor()) > abs(ball.ycor() - brick.ycor()):
+                ball.bounce_x()  # side hit
+            else:
+                ball.bounce_y()  # top/bottom hit
+
+            player_score.player_score()
             break
 
 screen.exitonclick()
