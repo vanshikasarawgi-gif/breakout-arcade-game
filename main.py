@@ -73,5 +73,15 @@ while is_game_on:
             player_score.add_points(points[color])
 
             break
+    #ball miss
+    if ball.ycor() < -280:
+        ball.reset_position()
+        paddle.goto(0,-250)
+        player_lives.calculate_lives()
+
+       
+
+
+
 
 screen.exitonclick()
